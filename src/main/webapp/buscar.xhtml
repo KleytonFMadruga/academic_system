@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sistema Acadêmico</title>
+    </h:head>
+    <h:body>
+       
+        <h1>Cadastros</h1>
+        
+        
+        	<h:form id="frm">
+        		<h:panelGrid columns="4">
+	        		
+	        		<p:commandButton action="#{sistemaAcademicoController.ListarAlunos()}" value="ListarAlunos" update=":frm" />
+	       	        <p:commandButton action="#{sistemaAcademicoController.ListarProfessores()}" value="ListarProfessores" update=":frm" />
+	        		<a href="http://localhost:8080/academic_system/buscar.jsf"><p:button value="Limpar"/></a>
+	        		
+	        	</h:panelGrid>
+      			 <p:dataTable  value="#{sistemaAcademicoController.professores}" var="professor">
+			      	  <p:column headerText="Professor">
+			      	  	<h:outputText value="#{professor.nome}" />
+			      	  </p:column>
+			      	   <p:column headerText="Siape">
+			      	  	<h:outputText value="#{professor.siape}" />
+			      	  </p:column>
+		      	  </p:dataTable>
+        		      	  
+		      	  <p:dataTable value="#{sistemaAcademicoController.alunos}" var="aluno">
+			      	  <p:column headerText="Aluno">
+			      	  	<h:outputText value="#{aluno.nome}" />
+			      	  </p:column>
+			      	   <p:column headerText="Matrícula">
+			      	  	<h:outputText value="#{aluno.matricula}" />
+			      	  </p:column>
+		      	  </p:dataTable>
+        		
+        	</h:form>
+        	
+        
+      
+        
+    </h:body>
+</html>
