@@ -9,31 +9,46 @@
         <title>Sistema Acadêmico</title>
     </h:head>
     <h:body>
-       
-        <h1>Cadastro de Alunos</h1>
+       <div align="center">
+        <h1>Matrícula de Alunos</h1>
         
         
         	<h:form id="frm" >
         		<h:panelGrid>
+        		
 	        		<p:outputLabel  value="Nome do aluno:"/>
-	        	
 	        		<p:inputText value="#{sistemaAcademicoController.aluno.nome}" />
-	        	
+	        		
 	        		<p:outputLabel value="Matrícula do aluno:"/>
 	        		<p:inputText  value="#{sistemaAcademicoController.aluno.matricula}"/>
-	        			
-	        		<p:commandButton action="#{sistemaAcademicoController.matricularAluno()}" value="Cadastrar" update=":frm"/>
 	        		
+	        		<p:outputLabel value="ID do curso a ser matriculado:"/>
+	        		<p:inputText  value="#{sistemaAcademicoController.aluno.id_curso}"/>
 	        		
-	        			
-        		</h:panelGrid>
-      				
-
-        		
+	        		<p:commandButton action="#{sistemaAcademicoController.matricularAluno()}" value="Matricular" update=":frm" style="padding: 5px 57px"/>
+	        		
+        		</h:panelGrid>        		      		
         	</h:form>
         	
-        
-      
+        	
+        </div>
+           <h:form id="frm1" >
+	           <h:panelGrid columns="2"> 
+	             <p:commandButton action="#{sistemaAcademicoController.ListarCursos()}" value="Listar Cursos" update=":frm1" style="padding: 25px 30px"/>
+	               
+		           <p:dataTable  value="#{sistemaAcademicoController.cursos}" var="curso">
+		         
+		           
+				      	  <p:column headerText="Cursos Disponíveis">
+				      	  	<h:outputText value="#{curso.nome}" />
+				      	  </p:column>
+				      	  <p:column headerText="ID Curso">
+				      	  	<h:outputText value="#{curso.id}" />
+				      	  </p:column>
+				      	  
+			      	</p:dataTable>
+			    </h:panelGrid>
+			</h:form>
         
     </h:body>
 </html>
