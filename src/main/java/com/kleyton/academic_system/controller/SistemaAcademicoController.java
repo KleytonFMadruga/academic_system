@@ -13,7 +13,9 @@ import javax.inject.Named;
 import com.kleyton.academic_system.dao.SistemaDAO;
 import com.kleyton.academic_system.model.Aluno;
 import com.kleyton.academic_system.model.Curso;
+import com.kleyton.academic_system.model.Disciplina;
 import com.kleyton.academic_system.model.Professor;
+import com.kleyton.academic_system.model.Turma;
 
 
 @Named
@@ -30,7 +32,13 @@ public class SistemaAcademicoController implements Serializable{
 	private List<Professor> professores = new ArrayList<>();
 	private Curso curso;
 	private List<Curso> cursos = new ArrayList<>();
+	private Disciplina disciplina;
+	private List<Disciplina> disciplinas = new ArrayList<>();
+	private Turma turma;
+	private List<Turma> turmas = new ArrayList<>();
+	
 	private SistemaDAO sisDAO = new SistemaDAO();
+
 	
 		
 	@PostConstruct
@@ -38,6 +46,8 @@ public class SistemaAcademicoController implements Serializable{
 		this.aluno = new Aluno();
 		this.professor = new Professor();
 		this.curso = new Curso();
+		this.disciplina = new Disciplina();
+		this.turma = new Turma();
 	}
 	
 	
@@ -45,8 +55,8 @@ public class SistemaAcademicoController implements Serializable{
 	
 	//CADASTROS
 	
-	public void matricularAluno() {
-		System.out.println("Aluno " + aluno.getNome() + ", de Matrícula: " + aluno.getMatricula() + " Matriculado com sucesso");
+	public void cadastrarAluno() {
+		System.out.println("Aluno " + aluno.getNome() + ", de Matrícula: " + aluno.getMatricula() + " Cadastrado com sucesso");
 		alunos.add(aluno);	
 		new SistemaDAO().salvarAluno(aluno);
 		aluno = new Aluno();
@@ -68,6 +78,33 @@ public class SistemaAcademicoController implements Serializable{
 		curso = new Curso();
 	}
 	
+	public void cadastrarDisciplina() {
+		System.out.println("Disciplina " + disciplina.getNome() + " Cadastrado com sucesso");
+		disciplinas.add(disciplina);	
+		new SistemaDAO().salvarDisciplina(disciplina);
+		disciplina = new Disciplina();
+	}
+	
+	public void criarTurma() {
+		System.out.println("Turma " + turma.getId_turma() + " Criada com sucesso");
+		turmas.add(turma);	
+		new SistemaDAO().salvarTurma(turma);;
+		turma = new Turma();
+	}
+	
+	public void matricularAlunoEmTurma() {
+		System.out.println("Aluno " + aluno.getNome() + ", de Matrícula: " + aluno.getMatricula() + " Matriculado com sucesso!");
+		new SistemaDAO().matricularAluno(aluno, turma);;
+		aluno = new Aluno();
+		turma = new Turma();
+
+	}
+	
+	public void desvincularAluno() {
+		System.out.println("Aluno desvinculado!");
+		new SistemaDAO().excluirAluno(aluno);
+		aluno = new Aluno();
+	}
 	
 		
 	//LISTAGENS DAO
@@ -82,6 +119,14 @@ public class SistemaAcademicoController implements Serializable{
 	
 	public void ListarCursos() {
 		cursos = sisDAO.buscarCursos();
+	}
+	
+	public void ListarDisciplinas() {
+		disciplinas = sisDAO.buscarDisciplinas();
+	}
+	
+	public void ListarTurmas() {
+		turmas = sisDAO.buscarTurmas();
 	}
 	
 	
@@ -112,6 +157,22 @@ public class SistemaAcademicoController implements Serializable{
 		this.cursos = cursos;
 	}
 	
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
+	
+	public List<Turma> getTurmas() {
+		return turmas;
+	}
+
+	public void setTurmas(List<Turma> turmas) {
+		this.turmas = turmas;
+	}
+
 	
 	
 	//GETS E SETS OBJETOS
@@ -140,4 +201,21 @@ public class SistemaAcademicoController implements Serializable{
 		this.curso = curso;
 	}
 
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+
+	public Turma getTurma() {
+		return turma;
+	}
+
+	public void setTurma(Turma turma) {
+		this.turma = turma;
+	}
+	
+	
 }

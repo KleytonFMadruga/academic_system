@@ -10,7 +10,7 @@
     </h:head>
     <h:body>
        <div align="center">
-        <h1>Matrícula de Alunos</h1>
+        <h1>Ingresso de Alunos</h1>
         
         
         	<h:form id="frm" >
@@ -25,7 +25,7 @@
 	        		<p:outputLabel value="ID do curso a ser matriculado:"/>
 	        		<p:inputText  value="#{sistemaAcademicoController.aluno.id_curso}"/>
 	        		
-	        		<p:commandButton action="#{sistemaAcademicoController.matricularAluno()}" value="Matricular" update=":frm" style="padding: 5px 57px"/>
+	        		<p:commandButton action="#{sistemaAcademicoController.cadastrarAluno()}" value="Cadastrar" update=":frm" style="padding: 5px 57px"/>
 	        		
         		</h:panelGrid>        		      		
         	</h:form>

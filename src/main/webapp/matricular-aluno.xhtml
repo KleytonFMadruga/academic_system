@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Sistema Acadêmico</title>
+    </h:head>
+    <h:body>
+       <div align="center">
+        <h1>Matrícula de Alunos</h1>
+        
+        
+        	<h:form id="frm" >
+        		<h:panelGrid>
+        		
+	        		<p:outputLabel  value="Digite Sua Matrícula:"/>
+	        		<p:inputText value="#{sistemaAcademicoController.aluno.matricula}" />
+	        		
+	        		<p:outputLabel value="Digite o Código da Disciplina:"/>
+	        		<p:inputText  value="#{sistemaAcademicoController.turma.id_disciplina}"/>
+	        		
+	        		<p:outputLabel value="Digite o ID da Turma:"/>
+	        		<p:inputText  value="#{sistemaAcademicoController.turma.id_turma}"/>
+	        		
+	        		<p:commandButton action="#{sistemaAcademicoController.matricularAlunoEmTurma()}" value="Matricular" update=":frm" style="padding: 5px 57px"/>
+	        		
+        		</h:panelGrid>        		      		
+        	</h:form>
+        	
+        	
+        </div>
+           <h:form id="frm1" >
+	           <h:panelGrid columns="2"> 
+	             <p:commandButton action="#{sistemaAcademicoController.ListarTurmas()}" value="Listar Disciplinas e Turmas" update=":frm1" style="padding: 25px 30px"/>
+	               
+		           <p:dataTable  value="#{sistemaAcademicoController.turmas}" var="turma">
+		         
+		           
+				      	  <p:column headerText="Turma">
+				      	  	<h:outputText value="#{turma.id_turma}" />
+				      	  </p:column>
+				      	  <p:column headerText="Código da Disciplina">
+				      	  	<h:outputText value="#{turma.id_disciplina}" />
+				      	  </p:column>
+				      	   <p:column headerText="Nome da Disciplina">
+				      	  	<h:outputText value="#{turma.nomeDisciplina}" />
+				      	  </p:column>
+				      	  <p:column headerText="Nome do Professor">
+				      	  	<h:outputText value="#{turma.nomeProfessor}" />
+				      	  </p:column>
+				      	  
+			      	</p:dataTable>
+			    </h:panelGrid>
+			</h:form>
+        
+    </h:body>
+</html>
